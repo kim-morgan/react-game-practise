@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import entities from './entities';
+import { GameEngine } from 'react-native-game-engine';
+import Physics from './physics';
 
 export default function App() {
+  const [running, setrunning] = useState(false);
   return (
     <View style={{flex: 1}}>
       <GameEngine
-      entitities = {entities()}
+      systems={[Physics]}
+      entities = {entities()}
         style={{
           position: 'absolute',
           top: 0,

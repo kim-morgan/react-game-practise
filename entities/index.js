@@ -1,4 +1,5 @@
-import Matter from 'matter-js'
+import Matter from 'matter-js';
+import Bird from '../components/Bird';
 
 export default restart => {
   let engine = Matter.Engine.create({enableSleeping: false})
