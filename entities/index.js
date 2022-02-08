@@ -1,7 +1,9 @@
 import Matter from 'matter-js';
 import Bird from '../components/Bird';
 import Floor from '../components/Floor';
+import Obstacle from '../components/Obstacle';
 import { Dimensions } from 'react-native';
+import { getPipeSizePosPair } from '../utils/random';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -13,9 +15,12 @@ export default restart => {
 
   world.gravity.y = 0.4;
 
+  const pipeSizePosA = getPipeSizePosPair(-300);
+
   return {
     physics: {engine, world},
     Bird: Bird(world, 'green',  {x: 50, y: 200},  {height: 40, width: 40}),
-    Floor: Floor(world, 'green',  {x: windowWidth / 2, y: windowHeight},  {height: 40, width: windowWidth})
+    Floor: Floor(world, 'green',  {x: windowWidth / 2, y: windowHeight},  {height: 40, width: windowWidth}),
+    ObstacleTop1: Obstacle(world, 'ObstacleTop1', 'blue',  pipeSizePosA.pipeTop.pos, pipeSizePosA.pipeTop.size),
   }
 }
